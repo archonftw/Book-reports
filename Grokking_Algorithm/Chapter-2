@@ -1,0 +1,18 @@
+-> Linked lists are good for inserts, as data cn b placed at any memory location via them, no need to find a contiguous location only
+-> Problem in linked lists
+    - U cannot read the last element of the LL directly,u hv to traverse from the starting to the end to read the end element
+    - If you want to keep jumping around, LL are terrible
+-> Advantage of Linked lists
+    -LL are great if you want to read all items one at a time    
+
+Arrays:-
+    -They are great if you have to access variables at random position
+
+->For inserting middle, LL are best, previous elements can be easily changed to who they point to
+->For deleting an element, LL are again better, just change what the prev elemenet refers to
+
+Access: Random access & Sequential access
+
+Arrays allow fast reads
+Linked list allow faster insertion and deletion
+

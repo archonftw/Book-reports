@@ -1,0 +1,239 @@
+# Travelling Salesman Problem (TSP)
+
+## 1. Problem Definition
+
+Given `n` cities and the distance between every pair of cities, find the minimum-cost route such that:
+
+1. Start from a fixed city.
+2. Visit every other city exactly once.
+3. Return to the starting city.
+4. Minimize the total travelling distance.
+
+TSP is a classic **combinatorial optimization problem**.
+
+### Example
+
+Distance matrix:
+
+| | A | B | C | D |
+|---|---:|---:|---:|---:|
+| A | 0 | 10 | 15 | 20 |
+| B | 10 | 0 | 35 | 25 |
+| C | 15 | 35 | 0 | 30 |
+| D | 20 | 25 | 30 | 0 |
+
+One optimal route:
+
+`A → B → D → C → A`
+
+Total cost = `10 + 25 + 30 + 15 = 80`
+
+---
+
+## 2. Approach 1: Brute Force
+
+### Idea
+
+Generate every possible permutation of cities, calculate the cost of each route, and choose the minimum.
+
+Fix city A as the starting city to avoid checking equivalent rotations.
+
+For `n` cities:
+
+- Number of possible routes = `(n-1)!`
+- Each route requires O(n) time to calculate.
+
+### C++ Implementation
+
+```cpp
+int tsp(vector<vector<int>>& dist) {
+    int n = dist.size();
+
+    vector<int> cities;
+
+    for (int i = 1; i < n; i++)
+        cities.push_back(i);
+
+    int ans = INT_MAX;
+
+    do {
+        int cost = 0;
+        int curr = 0;
+
+        for (int city : cities) {
+            cost += dist[curr][city];
+            curr = city;
+        }
+
+        cost += dist[curr][0];
+
+        ans = min(ans, cost);
+
+    } while (next_permutation(
+        cities.begin(), cities.end()
+    ));
+
+    return ans;
+}
+```
+
+### Complexity
+
+- Time: O(n! × n)
+- Auxiliary space: O(n)
+
+### Limitation
+
+Brute force becomes impractical as the number of cities increases because factorial complexity grows extremely quickly.
+
+---
+
+## 3. Approach 2: Dynamic Programming + Bitmasking
+
+### Core Idea
+
+Instead of calculating the same subproblems repeatedly, store their results using Dynamic Programming.
+
+The key observation:
+
+The minimum cost depends on:
+- Which cities have already been visited.
+- The current city.
+
+### A. Bitmasking
+
+Represent visited cities using binary bits.
+
+For 4 cities: A, B, C, D.
+
+| Visited cities | Bitmask |
+|---|---|
+| None | 0000 |
+| A | 0001 |
+| A, B | 0011 |
+| A, B, C | 0111 |
+| A, B, C, D | 1111 |
+
+Each bit represents whether a particular city has been visited.
+
+Useful operations:
+
+```cpp
+// Check whether city i is visited
+mask & (1 << i);
+
+// Mark city i as visited
+mask |= (1 << i);
+
+// Total possible masks
+int totalMasks = 1 << n;
+
+// All cities visited
+int fullMask = (1 << n) - 1;
+```
+
+### B. DP State
+
+Define:
+
+`dp[mask][u]`
+
+Meaning:
+
+Minimum cost to start at city 0, visit all cities represented by `mask`, and finish at city `u`.
+
+Initial state:
+
+```cpp
+dp[1][0] = 0;
+```
+
+We start at city 0, whose bit is set.
+
+### C. DP Transition
+
+From current city `u`, move to an unvisited city `v`.
+
+```cpp
+int newMask = mask | (1 << v);
+
+dp[newMask][v] = min(
+    dp[newMask][v],
+    dp[mask][u] + dist[u][v]
+);
+```
+
+Mathematical representation:
+
+`dp[mask | (1 << v)][v] = min(dp[mask | (1 << v)][v], dp[mask][u] + dist[u][v])`
+
+### D. Final Answer
+
+When every city has been visited, return to city 0.
+
+```cpp
+int fullMask = (1 << n) - 1;
+int ans = INT_MAX;
+
+for (int u = 1; u < n; u++) {
+    ans = min(
+        ans,
+        dp[fullMask][u] + dist[u][0]
+    );
+}
+```
+
+---
+
+## 4. Complexity Comparison
+
+| Approach | Time | Space |
+|---|---|---|
+| Brute Force | O(n! × n) | O(n) |
+| Bitmask DP | O(n² × 2ⁿ) | O(n × 2ⁿ) |
+
+Bitmask DP is much faster than brute force but is still exponential.
+
+---
+
+## 5. Important Concepts Learned
+
+1. **Permutation:** Generate all possible city orders.
+2. **Brute Force:** Try every possible solution.
+3. **Dynamic Programming:** Store previously calculated subproblems.
+4. **Bitmasking:** Represent a set of visited elements using binary bits.
+5. **State Representation:** Define a DP state using the information necessary to solve a subproblem.
+6. **State Transition:** Calculate the next state from the current state.
+
+---
+
+## 6. Complexity Theory
+
+TSP is an **NP-hard optimization problem**.
+
+- Finding the optimal route is computationally difficult.
+- Given a proposed route, its total cost can be verified in polynomial time.
+- No polynomial-time algorithm is currently known for solving general TSP exactly.
+
+### Applications
+
+- Delivery route optimization.
+- Logistics and supply chains.
+- Circuit board manufacturing.
+- Robotics and path planning.
+- DNA sequencing.
+
+---
+
+## 7. Revision Checklist
+
+- [ ] Understand why the starting city is fixed.
+- [ ] Implement brute force using `next_permutation()`.
+- [ ] Understand bitwise AND (`&`) and OR (`|`).
+- [ ] Understand how `1 << i` works.
+- [ ] Understand `dp[mask][u]`.
+- [ ] Derive the DP transition independently.
+- [ ] Implement bitmask DP without looking at the solution.
+- [ ] Explain why its complexity is O(n² × 2ⁿ).
+
+**Key takeaway:** TSP demonstrates how brute force can be optimized using Dynamic Programming and bitmasking, while also illustrating why some computational problems remain difficult even with clever algorithms.

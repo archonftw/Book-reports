@@ -1,0 +1,7 @@
+Max number of steps in a binary search, logn
+Run times for binary seach and linear serach dont grow at the same rate
+when number of elements increase in a binary search space, the BS runs a lot 
+faster as compared to linear search
+
+-> Algorithm speed isnt measured in seconds, but in growth in number of operations
+-> Runtime of algorithms is expressed in Big-O O(n)

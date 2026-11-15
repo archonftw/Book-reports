@@ -1,0 +1,24 @@
+                                            Breadth first search
+
+
+
+
+BFS allow us to find the shortest distance between 2 things(shortest-path-problem)
+
+//Example of thinking
+This way, you not only search your friends, but you search their friends,
+too. Remember, the goal is to find one mango seller in your network.
+So if Alice isn’t a mango seller, you add her friends to the list, too. That
+means you’ll eventually search her friends—and then their friends, and
+so on. With this algorithm, you’ll search your entire network until you
+come across a mango seller. This algorithm is breadth-first search.
+
+
+
+BFS can answer you these 2 things,
+1. Is ther e a path from node A to node B
+2. what is the shortes path from node A to node B
+
+You always check the 1st degree connections first, and then go to higher degree connections
+Before checking a node, its important to make sure that it hasn't already been checked before, coz if
+we check it agian, we will be doin unnecesary extra work

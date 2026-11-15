@@ -1,0 +1,17 @@
+                                        Recursion
+->Recursion has no such benefit in performance, infact loops are sometime better for performance
+Every recursive function has 2 parts: Base case and recursive case
+    Base case is when function doesn't call itself
+    Recursive case is when function calls itself
+
+Call Stack:It is a region of memory that manages function execution
+WHenever a function is called, it creates a stack frame(activation record) for that function
+the stack frame generally contains: parameters,local variables,return addresses
+upon completion of funciton, the stack frame is popped from the call stack
+
+Stack overflow:
+    Every stack frame consumes some stack space, sometime the stack space will exhaust
+
+When you called a function from another function,the calling function is paused in a partially completed state.
+
+

@@ -1,0 +1,19 @@
+                                            Divide and Conquer
+
+
+
+D&C algorithms are recursive algorithms
+1. Figure out the base case,this should be the simplest possible one
+2. Divide or decrease your problem until it becomes the base case
+
+Quick Sort:-
+1. Pick an element from the array, this element is called the PIVOT
+2. Partitioning: Pick elements smaller and larger from pivot
+
+Now you have pivot, subarray of larger element than pivot, subarray fo smaller element than pivot
+Call this partitioning recussively
+Avg case: O(nlogn) Worst case: O(n*n)
+
+Performance of quick sort heavily depends on the pivot you choose
+Normally, in binary and linear search, the constant doesn't make much difference
+But in quick and merge sort, quicksort has a smaller constant than merge sort, so if both of em has O(nlogn), qs is faster

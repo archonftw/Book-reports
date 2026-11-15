@@ -1,0 +1,34 @@
+                                                Hash Table
+
+
+
+
+A hash function needs to be consistent(same output for same input every time)
+no output will be same for 2 different inputs
+Hash function also knows how big your array is, so it only returns valid indexes only
+
+//Simplification
+The hash function outputs “3”. So let’s store the price of an apple at
+index 3 in the array.
+Let’s add milk. Feed “milk”
+into the hash function.
+The hash function says “0”. Let’s store the price of milk at index 0.
+
+
+Mapping web addresses to IPs,called DNS resolution, hash table are one way to implement this functionality
+Hash tables are also used as caches
+
+->Collisions: When 2 keys have been assigned same slot
+In reality, its almost impossible to make a hash function that is 100% consistent
+
+SOlution: Start a linked list at that collided node
+If that linked list gets very long, theres no use of it until and unless we have a good hash function
+
+O(1)->Doesnt mean an instant, it means that the time taken will be same for any input size
+
+TO avoid collisions, we need a low load factor, and a good hash function
+Load factor is (Number of items in a hash table)/(total number of slots)
+
+Lower teh load factor, the lesser the collisions
+A good hash function distributes values in an array evenly
+Hash tables are good for catching duplicates

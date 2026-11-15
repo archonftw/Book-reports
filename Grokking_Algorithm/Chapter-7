@@ -1,0 +1,15 @@
+                                                Dijkstra's Algorithm
+
+
+
+
+1. Find the cheapest node, you can get to in lease amount of time
+2. Update the cost of neighbours of this node
+3. Repeat until youve done this for every node in graph
+4. Calculat the final path
+
+:An undirected edge means both the connected nodes point at each other
+
+shortest path in unweighted graphs: BFS
+shortest path in weighted graphs: Dijkstra 
+
