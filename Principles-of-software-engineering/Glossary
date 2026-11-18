@@ -1,0 +1,2 @@
+Application silos: Each Application database is only accessible from the application owning that database
+Elastic scale: The ability to spin up more instances of resources as needed at the moment
