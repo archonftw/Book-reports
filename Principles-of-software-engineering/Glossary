@@ -1,2 +1,6 @@
 Application silos: Each Application database is only accessible from the application owning that database
 Elastic scale: The ability to spin up more instances of resources as needed at the moment
+Fitness functions: Functions that test the performances n metrics of operations in a software
+
+Message Queues:
+    Enables 

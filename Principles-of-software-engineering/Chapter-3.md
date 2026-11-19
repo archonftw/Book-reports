@@ -22,3 +22,9 @@ Measuring Modularity
     More the instability,more easily the codebase breaks
 
 4. Distance from the main
+    D=|A+I-1|       A->Abstractness I->Instability
+
+5. Connascence
+    Two components are said to be connascent if a change in one would require changes in other to maintain overall correctness
+    ->Static:Refers to source code level coupling, degree to which something is coupled
+    ->Dynamic:Analyzes calls at runtime
