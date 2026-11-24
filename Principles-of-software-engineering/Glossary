@@ -4,3 +4,7 @@ Fitness functions: Functions that test the performances n metrics of operations 
 
 Message Queues:
     Enables 
+
+
+Scalibility: Ability to handle a large number of concurrent users without serious performance degradation
+Elasticity: Ability to handle bursts of requests 
